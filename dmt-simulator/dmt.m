@@ -394,23 +394,25 @@ Dmt.FEQ_n             = FEQn;            % FEQ
 
 %% Traing Loading based on modulated sequence
 
-fprintf('\n------------------ Trained Loading -------------------- \n\n');
-
-% Perform 5 training iterations for the TEQ, in order to antecipate the
-% convergence between the joint loading and TEQ design.
-if (equalizer == EQ_TEQ)
-    nTraintIterations = 5;
-else
-    nTraintIterations = 1;
+switch (equalizer)
+    case EQ_NONE
+        nTraintIterations = 1;
+    case EQ_TEQ
+        % Perform 5 training iterations for the TEQ, in order to antecipate
+        % the convergence between the joint loading and TEQ design.
+        nTraintIterations = 5;
+    case {EQ_TIME_PREC, EQ_FREQ_PREC}
+        nTraintIterations = 0;
 end
 
 iTrainIteration = 0;
 while (iTrainIteration < nTraintIterations)
+fprintf('\n------------------ Trained Loading -------------------- \n\n');
     % Random DMT Data divided per subchannel
     [tx_data] = dmtRndData(Dmt);
 
     % DMT Modulation
-    [u, x] = dmtTx(tx_data, Dmt);
+    [~, x] = dmtTx(tx_data, Dmt);
 
     % Transmit Autocorrelation
 
