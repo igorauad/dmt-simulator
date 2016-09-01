@@ -107,6 +107,14 @@ fprintf('Complexity:     \t %d MACs\n', MACs);
 fprintf('MACs per sample:\t %d \n', ...
     MACs/(N+nu));
 
+CMAC = (length(sig_row_ici)*length(sig_col_ici)) / 4 + ...
+    (length(sig_col_isi)*length(sig_row_isi)) / 4 +  N*log2(N);
+
+fprintf('Complexity: %d CMACS\n', CMAC);
+
+fprintf('Complexity equivalent to %g times the FFT complexity\n', ...
+                    CMAC/(N*log2(N)));
+
 % Copy to struct for external usage:
 Precoder.ici.Wt              = Wt;
 Precoder.ici.significantCols = sig_col_ici;
