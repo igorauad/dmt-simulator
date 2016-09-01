@@ -97,10 +97,10 @@ MACs = (length(sig_row_ici)*length(sig_col_ici)) + ...
     (length(sig_col_isi)*length(sig_row_isi)) +  N*log2(N);
 
 fprintf('Wt Dimensions: %d x %d\n', ...
-    length(sig_col_ici), length(sig_row_ici));
+    length(sig_row_ici), length(sig_col_ici));
 
 fprintf('Wisi Dimensions: %d x %d\n', ...
-    length(sig_col_isi), length(sig_row_isi));
+    length(sig_row_isi), length(sig_col_isi));
 
 fprintf('Complexity:     \t %d MACs\n', MACs);
 
