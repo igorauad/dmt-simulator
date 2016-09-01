@@ -1,4 +1,4 @@
-function [Pe_bar, Rb] = dmt(Dmt, channelChoice)
+function [Pe_bar, Rb, Dmt] = dmt(Dmt, channelChoice)
 % DMT Simulator
 
 %% Debug levels

@@ -39,4 +39,5 @@ Dmt.maxIterations = 20;   % Number of iterations (nSymbols per iteration)
 channelChoice = 1;
 
 %% Run
-[Pe_bar, Rb] = dmt(Dmt, channelChoice);
+
+[Pe_bar, Rb, Dmt] = dmt(Dmt, channelChoice);
