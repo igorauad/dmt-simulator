@@ -1,5 +1,5 @@
 clearvars, clc
-addpath(genpath('../lib'))
+addpath(genpath('lib'))
 
 % Create an object that will contain all the DMT parameters
 Dmt = [];

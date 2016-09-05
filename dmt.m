@@ -121,27 +121,25 @@ switch (channelChoice)
         % filtering.
     case 1
         % D2-H2
-        N_old = N;
-        load('/Users/igorfreire/Documents/Lasse/gfast_simulator/Channel_Model/data/all_models_106mhz.mat');
-        N = N_old;
-        iModel = 2;
-        H_herm = [H(:,iModel,iModel); conj(flipud(H(2:end-1,iModel,iModel)))];
-        if (any(imag(ifft(H_herm, N)) > 1e-8))
-            warning('H is not Hermitian symmetric');
+        switch (L)
+        case 1
+        load('../gfast-channel/data/gfast_spacing_51750_N_4096_D2-H2.mat');
+        case 2
+        load('../gfast-channel/data/gfast_spacing_51750_N_8192_D2-H2.mat');
+        otherwise
+            error('The requested channel has not been generated yet.');
         end
-        clear H
-        h = real(ifft(H_herm));
-
         p = truncateCir(h).';
     case 2
         % D2-H1
-        load('/Users/igorfreire/Documents/Lasse/gfast_simulator/Cables/D2-H1.mat');
-        h = real(ifft(H));
-
-        if (any(imag(ifft(H, N)) > 0))
-            warning('H is not Hermitian symmetric');
+        switch (L)
+        case 1
+        load('../gfast-channel/data/gfast_spacing_51750_N_4096_D2-H1.mat');
+        case 2
+        load('../gfast-channel/data/gfast_spacing_51750_N_8192_D2-H1.mat');
+        otherwise
+            error('The requested channel has not been generated yet.');
         end
-
         p = truncateCir(h).';
     case 3
         p = [1e-5 1e-5 .91 -.3 .2 .09 .081 .0729];
