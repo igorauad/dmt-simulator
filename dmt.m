@@ -473,7 +473,11 @@ while ((numErrs < maxNumErrs) && (iTransmission < maxIterations))
     [rxx_current, ~] = xcorr(x(:), Nfft-1, 'unbiased');
 
     % Average the autocorrelation
-    rxx = (rxx_current + rxx)/2;
+    if (exist('rxx','var'))
+        rxx = (rxx_current + rxx)/2;
+    else
+        rxx = rxx_current;
+    end
 
     %% Debug Tx Energy
 
